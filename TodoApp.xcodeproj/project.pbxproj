@@ -11,6 +11,8 @@
 		F27436AD2CA2025300157A22 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27436AC2CA2025300157A22 /* ContentView.swift */; };
 		F27436AF2CA2025500157A22 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F27436AE2CA2025500157A22 /* Assets.xcassets */; };
 		F27436B22CA2025500157A22 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F27436B12CA2025500157A22 /* Preview Assets.xcassets */; };
+		F27436B92CA20BD600157A22 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27436B82CA20BD600157A22 /* NetworkManager.swift */; };
+		F27436BB2CA20EB100157A22 /* TodoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27436BA2CA20EB100157A22 /* TodoModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +21,9 @@
 		F27436AC2CA2025300157A22 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		F27436AE2CA2025500157A22 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F27436B12CA2025500157A22 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		F27436B82CA20BD600157A22 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		F27436BA2CA20EB100157A22 /* TodoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoModel.swift; sourceTree = "<group>"; };
+		F27436BE2CA21A4400157A22 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,10 +56,13 @@
 		F27436A92CA2025300157A22 /* TodoApp */ = {
 			isa = PBXGroup;
 			children = (
+				F27436BE2CA21A4400157A22 /* Info.plist */,
 				F27436AA2CA2025300157A22 /* TodoAppApp.swift */,
 				F27436AC2CA2025300157A22 /* ContentView.swift */,
 				F27436AE2CA2025500157A22 /* Assets.xcassets */,
 				F27436B02CA2025500157A22 /* Preview Content */,
+				F27436B82CA20BD600157A22 /* NetworkManager.swift */,
+				F27436BA2CA20EB100157A22 /* TodoModel.swift */,
 			);
 			path = TodoApp;
 			sourceTree = "<group>";
@@ -137,6 +145,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F27436B92CA20BD600157A22 /* NetworkManager.swift in Sources */,
+				F27436BB2CA20EB100157A22 /* TodoModel.swift in Sources */,
 				F27436AD2CA2025300157A22 /* ContentView.swift in Sources */,
 				F27436AB2CA2025300157A22 /* TodoAppApp.swift in Sources */,
 			);
@@ -275,6 +285,7 @@
 				DEVELOPMENT_TEAM = FDYJQK8SMH;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TodoApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -304,6 +315,7 @@
 				DEVELOPMENT_TEAM = FDYJQK8SMH;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TodoApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

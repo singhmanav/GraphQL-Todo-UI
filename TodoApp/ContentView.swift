@@ -11,75 +11,101 @@ import SwiftUI
 
 // Model for To-Do items
 struct TodoItem: Identifiable, Codable {
-    let id = UUID()
-    var title: String
-    var isCompleted: Bool
+  let id: UUID
+  var title: String
+  var isCompleted: Bool
 }
 
 struct TodosResponse: Codable {
-    let data: TodosData
+  let data: TodosData
+}
+
+struct CreateTodoResponse: Codable {
+  let data: CreateTodoData
+}
+
+struct DeleteTodoResponse: Codable {
+  let data: DeleteTodoData
+}
+
+struct DeleteTodoData: Codable {
+  let deleteTodo: Bool
+}
+
+struct ToggleTodoResponse: Codable {
+  let data: ToggleTodoData
+}
+
+struct ToggleTodoData: Codable {
+  let updateCompletion: Bool
+}
+
+struct CreateTodoData: Codable {
+  let createTodo: TodoItem
 }
 
 struct TodosData: Codable {
-    let todos: [TodoItem]
+  let todos: [TodoItem]
 }
 
 // Main ContentView
 struct ContentView: View {
-    @StateObject private var viewModel = TodoViewModel()
-
-    var body: some View {
-        NavigationView {
-            VStack {
-                // New Task Input
-                HStack {
-                    TextField("Enter new task", text: $viewModel.newTaskTitle)
-                        .padding(.horizontal)
-                        .frame(height: 45)
-                        .background(Color(.systemGray6))
-                        .cornerRadius(10)
-                        .padding(.horizontal)
-
-                    Button(action: {
-                        viewModel.addNewTask()
-                    }) {
-                        Image(systemName: "plus")
-                            .foregroundColor(.white)
-                            .padding()
-                            .background(Color.blue)
-                            .cornerRadius(10)
-                            .padding(.trailing)
-                    }
-                }
-                .padding(.top)
-
-                // Task List
-                List {
-                    ForEach(viewModel.items) { item in
-                        HStack {
-                            Button(action: {
-                                viewModel.toggleCompletion(item: item)
-                            }) {
-                                Image(systemName: item.isCompleted ? "checkmark.circle.fill" : "circle")
-                                    .foregroundColor(item.isCompleted ? .green : .gray)
-                                    .animation(.easeIn)
-                            }
-
-                            Text(item.title)
-                                .strikethrough(item.isCompleted)
-                                .foregroundColor(item.isCompleted ? .gray : .primary)
-                                .animation(.easeIn)
-                        }
-                        .padding(.vertical, 10)
-                    }
-                    .onDelete(perform: viewModel.deleteTask)
-                }
-                .listStyle(InsetGroupedListStyle())
-            }
-            .navigationTitle("To-Do List")
-            .navigationBarItems(trailing: refreshButton) // Edit button for deleting tasks
+  @StateObject private var viewModel = TodoViewModel()
+  
+  var body: some View {
+    NavigationView {
+      VStack {
+        // New Task Input
+        HStack {
+          TextField("Enter new task", text: $viewModel.newTaskTitle)
+            .padding(.horizontal)
+            .frame(height: 45)
+            .background(Color(.systemGray6))
+            .cornerRadius(10)
+            .padding(.horizontal)
+          
+          Button(action: {
+            viewModel.addNewTask(title: viewModel.newTaskTitle)
+            viewModel.newTaskTitle = ""
+          }) {
+            Image(systemName: "plus")
+              .foregroundColor(.white)
+              .padding()
+              .background(Color.blue)
+              .cornerRadius(10)
+              .padding(.trailing)
+          }
         }
+        .padding(.top)
+        
+        // Task List
+        List {
+          ForEach(viewModel.items) { item in
+            HStack {
+              Button(action: {
+                viewModel.toggleCompletion(item: item)
+              }) {
+                Image(systemName: item.isCompleted ? "checkmark.circle.fill" : "circle")
+                  .foregroundColor(item.isCompleted ? .green : .gray)
+                  .animation(.easeIn)
+              }
+              
+              Text(item.title)
+                .strikethrough(item.isCompleted)
+                .foregroundColor(item.isCompleted ? .gray : .primary)
+                .animation(.easeIn)
+            }
+            .padding(.vertical, 10)
+          }
+          .onDelete(perform: viewModel.deleteTask)
+          .listRowBackground(Color.white)
+        }
+        .listStyle(InsetGroupedListStyle())
+      }
+      .navigationTitle("To-Do List")
+      .navigationBarItems(trailing: refreshButton) // Edit button for deleting tasks
     }
+  }
   
   var refreshButton: some View {
     return Button {
@@ -87,13 +113,13 @@ struct ContentView: View {
     } label: {
       Image(systemName: "arrow.clockwise")
     }
-
+    
   }
 }
 
 // Preview for SwiftUI
 struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
+  static var previews: some View {
+    ContentView()
+  }
 }
